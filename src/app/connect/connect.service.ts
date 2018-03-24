@@ -41,17 +41,16 @@ export class ConnectService {
   // Create txts function
   createTxt(text){
     let txt = JSON.stringify(text);
-    return this.httpClient.post("https://api-ex.herokuapp.com", text, httpOptions)
+    return this.httpClient.post("https://api-ex.herokuapp.com", text, httpOptions);
   }
   // Update txt function
   updateTxt(text){
     let txt = JSON.stringify(text);
-    return this.httpClient.put("https://api-ex.herokuapp.com"+ text.id, text, httpOptions)
+    return this.httpClient.put("https://api-ex.herokuapp.com/"+ text.id + "/", txt, httpOptions);
   }
   // Delete txt function
   deleteTxt(text){
-    let txt = JSON.stringify(text);
-    return this.httpClient.delete("https://api-ex.herokuapp.com"+ text.id)
+    return this.httpClient.delete("https://api-ex.herokuapp.com/"+ text.id);
   }
 
   constructor(private httpClient:HttpClient) { }

@@ -4,11 +4,22 @@
 <ul>
   <li *ngFor="let text of texts">{{text.txt}}</li>
 </ul>
+<ul>
+  <li *ngFor="let text of texts">
+    <input type="text" name="text-data" [(ngModel)]="text.txt">
+    <button (click)="updateTxt(text)" class="btn btn-outline-info">
+      Update
+    </button>
+    <button (click)="deleteTxt(text)" class="btn btn-outline-danger">
+      Delete
+    </button>
+  </li>
+</ul>
 
 <div class="container">
   <p>
     Create a new food:
-    <input type="text" name="text_txt" [(ngModel)]="text_txt" class="form-control"/>
+    <input type="text" name="text_txt" [(ngModel)]="text_txt" class="form-control">
     <button (click)="createTxt(text_txt)" class="btn btn-outline-primary m-1">
       Save
     </button>

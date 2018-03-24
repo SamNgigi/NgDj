@@ -71,6 +71,7 @@ export class ApiComponent implements OnInit {
     this.connectService.updateTxt(text).subscribe(
       data => {
         // refresh the list.
+          console.log(data)
         this.getTxt();
         return true
       },
@@ -79,6 +80,23 @@ export class ApiComponent implements OnInit {
         return Observable.throw(error);
       }
     );
+  }
+
+  deleteTxt(text){
+    if(confirm("Are you sure you want to delete " + text.id + "?")){
+      this.connectService.deleteTxt(text).subscribe(
+        data => {
+          // refreshes the list
+          console.log(data)
+          this.getTxt();
+          return true
+        },
+        error => {
+          console.error("Error deleting txt");
+          return Observable.throw(error);
+        }
+      );
+    }
   }
 
 }
