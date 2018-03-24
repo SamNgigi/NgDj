@@ -15,6 +15,7 @@ export class ApiComponent implements OnInit {
   // Stores txts from our api call.
   // txts=[];
    texts: Text[];
+   selectedText: string = ''
 
   constructor(private connectService:ConnectService) { }
 
@@ -67,19 +68,14 @@ export class ApiComponent implements OnInit {
     );
   }
 
-  updateTxt(text){
-    this.connectService.updateTxt(text).subscribe(
-      data => {
-        // refresh the list.
-          console.log(data)
-        this.getTxt();
-        return true
-      },
-      error =>{
-        console.error("Error saving updated txt!");
-        return Observable.throw(error);
-      }
-    );
+  updateTxt(txt: Text): void{
+    // Logs the id of the one we want to edit.
+    console.log(txt.id)
+    // removes the one we want to edit from displays list.
+    this.texts = this.texts.filter(h => h !== txt)
+    // displays the one we want to edit in input.
+    this.selectedText = txt.txt
+
   }
 
   deleteTxt(txt: Text): void {

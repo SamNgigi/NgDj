@@ -48,9 +48,8 @@ export class ConnectService {
     return this.httpClient.post<Text>("https://api-ex.herokuapp.com", text, httpOptions);
   }
   // Update txt function
-  updateTxt(text: Text){
-    let txt = JSON.stringify(text);
-    return this.httpClient.put("https://api-ex.herokuapp.com/"+ text.id + "/", txt, httpOptions);
+  updateTxt(text: Text): Observable<any>{
+    return this.httpClient.put(this.apiTextUrl+ text.id + "/", text, httpOptions);
   }
   // Delete txt function
   deleteTxt(text: Text | number): Observable<Text> {
