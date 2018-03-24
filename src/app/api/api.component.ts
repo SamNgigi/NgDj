@@ -11,8 +11,8 @@ import 'rxjs/add/operator/map';
 })
 export class ApiComponent implements OnInit {
   // Stores txts from our api call.
-  txts=[];
-
+  // txts=[];
+  public txts;
   constructor(private connectService:ConnectService) { }
 
   ngOnInit() {
@@ -38,9 +38,17 @@ export class ApiComponent implements OnInit {
 
     */
 
-    this.connectService.getTxt().subscribe(response => {
-      console.log(response)
-    })
+    this.connectService.getTxt().subscribe(
+      // the first argument is a function which runs on success
+      response => {
+        console.log(response);
+        this.txts = response;
+      },
+      // the second argument is a function which runs on error
+      error => console.log(error),
+      // the first argument is a function which runs on commpletion
+      () => console.log('done loading txts')
+     );
   }
 
 }
