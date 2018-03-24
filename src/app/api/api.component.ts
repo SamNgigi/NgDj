@@ -61,14 +61,24 @@ export class ApiComponent implements OnInit {
         return true;
       },
       error =>{
-        console.error("Error saving food!");
+        console.error("Error saving txt!");
         return Observable.throw(error);
       }
     );
   }
 
   updateTxt(text){
-    
+    this.connectService.updateTxt(text).subscribe(
+      data => {
+        // refresh the list.
+        this.getTxt();
+        return true
+      },
+      error =>{
+        console.error("Error saving updated txt!");
+        return Observable.throw(error);
+      }
+    );
   }
 
 }
