@@ -17,6 +17,10 @@ export class ApiComponent implements OnInit {
 
   ngOnInit() {
 
+    this.getTxt();
+  }
+
+  getTxt(){
     /*
       The .subscribe() method takes three arguments which are event handlers.
       They are the,
