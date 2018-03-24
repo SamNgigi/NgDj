@@ -12,7 +12,7 @@ import 'rxjs/add/operator/map';
 export class ApiComponent implements OnInit {
   // Stores txts from our api call.
   // txts=[];
-  public txts;
+  public texts;
   constructor(private connectService:ConnectService) { }
 
   ngOnInit() {
@@ -42,7 +42,7 @@ export class ApiComponent implements OnInit {
       // the first argument is a function which runs on success
       response => {
         console.log(response);
-        this.txts = response;
+        this.texts = response;
       },
       // the second argument is a function which runs on error
       error => console.log(error),
