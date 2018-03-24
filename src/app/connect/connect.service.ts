@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 
+import { Text } from '../Text';
+
 // Defining our httpOptions
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -10,15 +12,18 @@ const httpOptions = {
 
 @Injectable()
 export class ConnectService {
+  private apiTextUrl = 'https://api-ex.herokuapp.com/';
 
-  getTxt(){
+  constructor(private httpClient:HttpClient) { }
+
+  getTxt(): Observable<Text[]>{
     /*
       Lets use this for now without the map function.
       Our service makes the HTTP request and returns the Observable object.
 
       We use httpClient.get() to load data from a singel API endpoint.
     */
-    return this.httpClient.get("https://api-ex.herokuapp.com")
+    return this.httpClient.get<Text[]>(this.apiTextUrl)
     /*
       We can use Observable.forkJoin() to run multiple concurrent httpClient.get() requests.
 
@@ -39,20 +44,24 @@ export class ConnectService {
   }
 
   // Create txts function
-  createTxt(text){
-    let txt = JSON.stringify(text);
-    return this.httpClient.post("https://api-ex.herokuapp.com", text, httpOptions);
+  createTxt(text: Text): Observable<Text> {
+    return this.httpClient.post<Text>("https://api-ex.herokuapp.com", text, httpOptions);
   }
   // Update txt function
-  updateTxt(text){
+  updateTxt(text: Text){
     let txt = JSON.stringify(text);
     return this.httpClient.put("https://api-ex.herokuapp.com/"+ text.id + "/", txt, httpOptions);
   }
   // Delete txt function
-  deleteTxt(text){
-    return this.httpClient.delete("https://api-ex.herokuapp.com/"+ text.id);
+  deleteTxt(text: Text | number): Observable<Text> {
+    // We create a const id of the specified text's id and pass it into the url
+    const id = typeof text === 'number' ? text : text.id
+    const url = `${this.apiTextUrl}/${id}/`;
+
+
+    return this.httpClient.delete<Text>(url);
   }
 
-  constructor(private httpClient:HttpClient) { }
+
 
 }

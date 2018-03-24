@@ -17,11 +17,16 @@
 </ul>
 
 <div class="container">
-  <p>
-    Create a new food:
-    <input type="text" name="text_txt" [(ngModel)]="text_txt" class="form-control">
-    <button (click)="createTxt(text_txt)" class="btn btn-outline-primary m-1">
-      Save
-    </button>
-  </p>
+  <hr>
+    <div class="input-group">
+      <div class="input-group-append">
+        <span (click)="addText.value=''" class="input-group-text" id="basic-addon2"><i class="fa fa-repeat fa-2x"></i></span>
+      </div>
+
+      <input #addText class="form-control" placeholder="Add text"/>
+
+      <div class="input-group-append">
+        <span (click)="add(addText.value); addText.value=''" class="input-group-text" id="basic-addon2"><i class="fa fa-plus-circle fa-2x"></i></span>
+      </div>
+    </div>
 </div>

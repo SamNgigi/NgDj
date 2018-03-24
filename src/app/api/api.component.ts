@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ConnectService } from '../connect/connect.service';
 import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
+
+import { Text } from '../Text';
+import { ConnectService } from '../connect/connect.service';
 
 
 @Component({
@@ -12,15 +14,15 @@ import 'rxjs/add/operator/map';
 export class ApiComponent implements OnInit {
   // Stores txts from our api call.
   // txts=[];
-  public texts;
+   texts: Text[];
+
   constructor(private connectService:ConnectService) { }
 
   ngOnInit() {
-
     this.getTxt();
   }
 
-  getTxt(){
+  getTxt(): void{
     /*
       The .subscribe() method takes three arguments which are event handlers.
       They are the,
@@ -51,18 +53,16 @@ export class ApiComponent implements OnInit {
      );
   }
 
-  createTxt(txt){
-    let text = {txt:txt};
-    this.connectService.createTxt(text).subscribe(
+  // Remember that our class property var here has to be similar to our api property
+  add(txt: string): void {
+    txt = txt.trim();
+    if (!txt){ return; }
+    this.connectService.createTxt({ txt } as Text).subscribe(
       data => {
         // This refreshes the list with out new txt
         console.log(data)
+        this.texts.push(data)
         this.getTxt();
-        return true;
-      },
-      error =>{
-        console.error("Error saving txt!");
-        return Observable.throw(error);
       }
     );
   }
@@ -82,9 +82,11 @@ export class ApiComponent implements OnInit {
     );
   }
 
-  deleteTxt(text){
-    if(confirm("Are you sure you want to delete " + text.id + "?")){
-      this.connectService.deleteTxt(text).subscribe(
+  deleteTxt(txt: Text): void {
+    if(confirm("Are you sure you want to delete " + txt.id + "?")){
+      // This removes specified txt from out front-end texts list in hopoe that the rest of the function will remove it from the server
+      this.texts = this.texts.filter(h => h !== txt)
+      this.connectService.deleteTxt(txt).subscribe(
         data => {
           // refreshes the list
           console.log(data)
