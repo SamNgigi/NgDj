@@ -45,10 +45,30 @@ export class ApiComponent implements OnInit {
         this.texts = response;
       },
       // the second argument is a function which runs on error
-      error => console.log(error),
+      error => console.error(error),
       // the first argument is a function which runs on commpletion
       () => console.log('done loading txts')
      );
+  }
+
+  createTxt(txt){
+    let text = {txt:txt};
+    this.connectService.createTxt(text).subscribe(
+      data => {
+        // This refreshes the list with out new txt
+        console.log(data)
+        this.getTxt();
+        return true;
+      },
+      error =>{
+        console.error("Error saving food!");
+        return Observable.throw(error);
+      }
+    );
+  }
+
+  updateTxt(text){
+    
   }
 
 }
