@@ -66,6 +66,7 @@ export class ApiComponent implements OnInit {
         this.getTxt();
       }
     );
+     this.selectedText=''
   }
 
   updateTxt(txt: Text): void{
