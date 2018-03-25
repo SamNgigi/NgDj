@@ -1,20 +1,43 @@
 <h1>Angular 5/ DRF collaboration test. </h1>
 <h2>Txts</h2>
 
+<!--
 <ul>
   <li *ngFor="let text of texts">{{text.txt}}</li>
 </ul>
-<ul>
-  <li *ngFor="let text of texts">
-    <input type="text" name="text-data" [(ngModel)]="text.txt">
-    <button (click)="updateTxt(text)" class="btn btn-outline-info">
-      Update
-    </button>
-    <button (click)="deleteTxt(text)" class="btn btn-outline-danger">
-      Delete
-    </button>
-  </li>
-</ul>
+ -->
+<div class="contaner">
+  <ul>
+    <div *ngFor="let text of texts; let i = index" class="row px-5" >
+      <div class="col-6">
+        <li *ngIf="!text.Update">{{text.txt}}</li>
+        <div *ngIf="text.Update" class="input-group">
+          <div class="input-group-append">
+            <span (click)="editText.value=''" class="input-group-text" id="basic-addon2"><i class="fa fa-repeat fa-lg"></i></span>
+          </div>
+          <input #editText  type="text" name="text-data" [(ngModel)]="text.txt" class="form-control" style="max-width:800px">
+          <div class="input-group-append">
+            <span  class="input-group-text" id="basic-addon2"><i class="fa fa-check-square-o fa-lg"></i></span>
+          </div>
+        </div>
+      </div>
+    <div class="col-6">
+      <button (click)="editText(i)" class="btn btn-outline-info">
+        Edit
+      </button>
+
+      <!--
+      <button (click)="updateTxt(text)" class="btn btn-outline-info">
+        Update
+      </button>
+     -->
+      <button (click)="deleteTxt(text)" class="btn btn-outline-danger">
+        Delete
+      </button>
+    </div>
+    </div>
+  </ul>
+</div>
 
 <div class="container">
   <hr>

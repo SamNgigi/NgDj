@@ -1,4 +1,9 @@
 export class Text {
-  id: number;
-  txt:string;
+  public Update:boolean;
+  constructor(
+    public id: number,
+    public txt:string
+  ){
+    this.Update=false
+  }
 }

@@ -69,15 +69,21 @@ export class ApiComponent implements OnInit {
      this.selectedText=''
   }
 
-  updateTxt(txt: Text): void{
+  editText(i): void{
     // Logs the id of the one we want to edit.
-    console.log(txt.id)
+    // console.log(txt.id)
+    this.texts[i].Update = !this.texts[i].Update
     // removes the one we want to edit from displays list.
-    this.texts = this.texts.filter(h => h !== txt)
+    // this.texts = this.texts.filter(h => h !== txt)
     // displays the one we want to edit in input.
-    this.selectedText = txt.txt
+    // this.selectedText = txt.txt
 
   }
+
+  updateTxt(txt:Text): void{
+
+  }
+
 
   deleteTxt(txt: Text): void {
     if(confirm("Are you sure you want to delete " + txt.id + "?")){
