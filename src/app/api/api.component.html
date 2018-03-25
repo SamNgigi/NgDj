@@ -17,7 +17,7 @@
           </div>
           <input #editText  type="text" name="text-data" [(ngModel)]="text.txt" class="form-control" style="max-width:800px">
           <div class="input-group-append">
-            <span  class="input-group-text" id="basic-addon2"><i class="fa fa-check-square-o fa-lg"></i></span>
+            <span (click)="updateTxt(text)"  class="input-group-text" id="basic-addon2"><i class="fa fa-check-square-o fa-lg"></i></span>
           </div>
         </div>
       </div>

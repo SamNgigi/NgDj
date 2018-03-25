@@ -81,7 +81,13 @@ export class ApiComponent implements OnInit {
   }
 
   updateTxt(txt:Text): void{
-
+    this.connectService.updateTxt(txt).subscribe(
+      data => {
+        console.log(data);
+        this.getTxt()
+        return true
+      }
+    );
   }
 
 
