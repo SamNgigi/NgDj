@@ -1,43 +1,9 @@
-<h1>Angular 5/ DRF collaboration test. </h1>
-<h2>Txts</h2>
-
-<!--
-<ul>
-  <li *ngFor="let text of texts">{{text.txt}}</li>
-</ul>
- -->
-<div class="contaner">
-  <ul>
-    <div *ngFor="let text of texts; let i = index" class="row px-5" >
-      <div class="col-6">
-        <li *ngIf="!text.Update">{{text.txt}}</li>
-        <div *ngIf="text.Update" class="input-group">
-          <div class="input-group-append">
-            <span (click)="editText.value=''" class="input-group-text" id="basic-addon2"><i class="fa fa-repeat fa-lg"></i></span>
-          </div>
-          <input #editText  type="text" name="text-data" [(ngModel)]="text.txt" class="form-control" style="max-width:800px">
-          <div class="input-group-append">
-            <span (click)="updateTxt(text)"  class="input-group-text" id="basic-addon2"><i class="fa fa-check-square-o fa-lg"></i></span>
-          </div>
-        </div>
-      </div>
-    <div class="col-6">
-      <button (click)="editText(i)" class="btn btn-outline-info">
-        Edit
-      </button>
-
-      <!--
-      <button (click)="updateTxt(text)" class="btn btn-outline-info">
-        Update
-      </button>
-     -->
-      <button (click)="deleteTxt(text)" class="btn btn-outline-danger">
-        Delete
-      </button>
-    </div>
-    </div>
-  </ul>
+<div class="container">
+  <div class="jumbotron m-4 p-3 text-center">
+    <h1>Angular 5/ DRF Duo test. </h1>
+  </div>
 </div>
+
 
 <div class="container">
   <hr>
@@ -52,4 +18,41 @@
         <span (click)="add(addText.value);" class="input-group-text" id="basic-addon2"><i class="fa fa-plus-circle fa-2x"></i></span>
       </div>
     </div>
+</div>
+<hr>
+<div class="jumbotron container mt-3">
+  <ul class="list-group">
+    <li class="list-group-item my-2"  *ngFor="let text of texts; let i = index" >
+        <p *ngIf="!text.Update">{{text.txt}}</p>
+        <div *ngIf="text.Update" class="input-group m-3 p-3">
+          <div class="input-group-append">
+            <span (click)="editText.value=''" class="input-group-text" id="basic-addon2"><i class="fa fa-repeat fa-lg"></i></span>
+          </div>
+          <input #editText  type="text" name="text-data" [(ngModel)]="text.txt" class="form-control" style="max-width:100%">
+          <div class="input-group-append">
+            <span (click)="updateTxt(text)"  class="input-group-text" id="basic-addon2"><i class="fa fa-check-square-o fa-lg text-success"></i></span>
+          </div>
+        </div>
+      <span class="pull-right">
+        <i (click)="editText(i)" class="fa fa-pencil-square-o fa-lg text-info mx-1"></i>
+        <i (click)="deleteTxt(text)" class="fa fa-trash-o fa-lg text-danger mx-1"></i>
+      </span>
+      <span (click)="deleteTxt(text)" class=" pull-right">
+
+      </span>
+
+      <!--
+      <button (click)="updateTxt(text)" class="btn btn-outline-info">
+        Update
+      </button>
+      <button (click)="editText(i)" class="btn btn-outline-info">
+        Edit
+      </button>
+      <button (click)="deleteTxt(text)" class="btn btn-outline-danger">
+        Delete
+      </button>
+     -->
+
+  </li>
+  </ul>
 </div>
