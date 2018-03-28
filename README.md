@@ -1,8 +1,10 @@
+# ApiTest
 
 This is a simple crud application using a rest api i made with django rest framework and angular 5. Here is a link to the rest api -https://api-ex.herokuapp.com. The git hub repo for the api found here https://github.com/SamNgigi/DjNg.
 
-# ApiTest
 
+# Author
+Sam Ngigi
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
