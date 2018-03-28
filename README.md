@@ -5,6 +5,8 @@ This is a simple crud application using a rest api i made with django rest frame
 
 # Author
 Sam Ngigi
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.7.3.
 
 ## Development server
